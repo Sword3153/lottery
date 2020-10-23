@@ -7,20 +7,29 @@
 </head>
 <script src="lib/vue.min.js"></script>
 <style>
+    html {
+        background-color: rgb(248, 131, 78);
+    }
+
     body {
         width: 100%;
         margin: 0;
+        min-height: 100%;
         text-align: center;
+        background-image: url("image/bgimg.png");
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-position: center;
     }
 
     .pan {
-        width: 300px;
-        height: 300px;
-        background-image: linear-gradient(#e66465, #9198e5);
+        width: 200px;
+        height: 200px;
+    / / background-image: linear-gradient(#e66465, #9198e5);
         transition: all 2s;
-        font-size: 20px;
+        font-size: 16px;
         color: white;
-        line-height: 300px;
+        line-height: 200px;
         text-align: center;
         border-radius: 50%;
         display: inline-block;
@@ -31,17 +40,49 @@
         transition: all 2s;
     }
 
+    .circle {
+        display: inline-block;
+        background-image: url("image/circleimg.png");
+        width: 200px;
+        height: 200px;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100%;
+    }
+
 </style>
 <body>
 <div id="app">
-    <h1>{{title}}</h1>
-    <div class="pan" :class="rotate?'go':''" @click="action">
-        <div>点击抽奖</div>
+    <div @click="a=1">{{title}}</div>
+    <div class="circle">
+        <div class="pan" :class="rotate?'go':''" @click="action">
+            <div>点击抽奖</div>
+        </div>
     </div>
-    <div style="margin-top: 50px">活动规则</div>
-    <div>活动时间</div>
-    <div>活动奖品</div>
-    <div>活动免责</div>
+    <div style="text-align: left;margin:0 15px;background-color: white;margin-top: 30px;padding: 10px;box-sizing: border-box">
+        <div style="font-size: 20px">活动规则</div>
+        <div>
+            1、活动以每周抽奖形式，每周五11:30 — 13:00定时进行网上抽奖，达到入围条件者均可抽奖，奖品以邮寄的形式发放。<br/>
+            2、每位用户每周可获得一次抽奖资格，过期作废<br/>
+            3、对于违反活动规则，使用或涉嫌使用不正当方式套取活动权益的用户，本活动负责人有权取消活动资格，追回已发放的权益
+        </div>
+        <table style="border: 1px solid black;">
+            <thead>
+            <tr>
+                <th width="100">入围条件</th>
+                <th width="100">抽奖时间</th>
+                <th width="135">奖项设置</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>关注公众号</td>
+                <td>每周周五</td>
+                <td>一等奖5名，每人5000RMB<br/>幸运奖50名，每人300RMB。</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 </body>
 <script>
@@ -50,6 +91,7 @@
         data: {
             title: '抽奖活动',
             rotate: false,
+            a: 0,
         },
         mounted() {
         },
@@ -57,8 +99,12 @@
             action() {
                 this.rotate = !this.rotate;
                 setTimeout(function () {
-                    alert('谢谢参与！')
-                },2000)
+                    if (vue.a) {
+                        alert('恭喜您中大奖了！')
+                    } else {
+                        alert('谢谢参与！')
+                    }
+                }, 2000)
             }
         }
     })
