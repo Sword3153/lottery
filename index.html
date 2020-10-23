@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=375,user-scalable=yes"/>
+    <title>抽奖活动</title>
+</head>
+<script src="lib/vue.min.js"></script>
+<style>
+    body {
+        width: 100%;
+        margin: 0;
+        text-align: center;
+    }
+
+    .pan {
+        width: 300px;
+        height: 300px;
+        background-image: linear-gradient(#e66465, #9198e5);
+        transition: all 2s;
+        font-size: 20px;
+        color: white;
+        line-height: 300px;
+        text-align: center;
+        border-radius: 50%;
+        display: inline-block;
+    }
+
+    .pan.go {
+        transform: rotate(500deg);
+        transition: all 2s;
+    }
+
+</style>
+<body>
+<div id="app">
+    <h1>{{title}}</h1>
+    <div class="pan" :class="rotate?'go':''" @click="action">
+        <div>点击抽奖</div>
+    </div>
+    <div style="margin-top: 50px">活动规则</div>
+    <div>活动时间</div>
+    <div>活动奖品</div>
+    <div>活动免责</div>
+</div>
+</body>
+<script>
+    var vue = new Vue({
+        el: '#app',
+        data: {
+            title: '抽奖活动',
+            rotate: false,
+        },
+        mounted() {
+        },
+        methods: {
+            action() {
+                this.rotate = !this.rotate;
+            }
+        }
+    })
+</script>
+</html>
